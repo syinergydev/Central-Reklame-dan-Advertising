@@ -46,12 +46,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
 
   const viewport = document.querySelector('.gallery-viewport');
-  document.querySelector('.gallery-next').addEventListener('click', () => {
-    viewport.scrollBy({ left: Math.min(520, viewport.clientWidth * .8), behavior: reduceMotion ? 'auto' : 'smooth' });
+  const scrollGallery = direction => {
+    const cards = visibleCardsForScroll();
+    if (!cards.length) return;
+    const current = cards.reduce((best, card) =>
+      Math.abs(card.offsetLeft - viewport.scrollLeft) < Math.abs(best.offsetLeft - viewport.scrollLeft) ? card : best
+    , cards[0]);
+    const index = cards.indexOf(current);
+    const target = cards[Math.max(0, Math.min(cards.length - 1, index + direction))];
+    if (target) viewport.scrollTo({ left: target.offsetLeft - viewport.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
+  const visibleCardsForScroll = () => galleryButtons.filter(card => !card.classList.contains('is-hidden'));
+  document.querySelector('.gallery-next').addEventListener('click', () => scrollGallery(1));
+  document.querySelector('.gallery-prev').addEventListener('click', () => scrollGallery(-1));
+
+  // Native touch scrolling remains available on phones, including when GSAP is unavailable.
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+  let draggingGallery = false;
+  viewport.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || window.matchMedia('(max-width: 760px)').matches) return;
+    draggingGallery = true;
+    dragStartX = event.clientX;
+    dragStartScroll = viewport.scrollLeft;
+    viewport.classList.add('is-dragging');
   });
-  document.querySelector('.gallery-prev').addEventListener('click', () => {
-    viewport.scrollBy({ left: -Math.min(520, viewport.clientWidth * .8), behavior: reduceMotion ? 'auto' : 'smooth' });
+  viewport.addEventListener('pointermove', event => {
+    if (!draggingGallery) return;
+    viewport.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
   });
+  ['pointerup','pointercancel','pointerleave'].forEach(type => viewport.addEventListener(type, () => {
+    draggingGallery = false;
+    viewport.classList.remove('is-dragging');
+  }));
 
   const lightbox = document.querySelector('.lightbox');
   const lightboxImg = lightbox.querySelector('img');
@@ -168,5 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     button.addEventListener('pointerleave', () => gsap.to(button, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1,.45)' }));
   });
-  window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  }, { passive: true });
+  window.addEventListener('orientationchange', () => {
+    window.setTimeout(() => ScrollTrigger.refresh(), 250);
+  }, { passive: true });
 });

@@ -34,3 +34,11 @@ GSAP, ScrollTrigger, dan font Geist dimuat melalui CDN; koneksi internet diperlu
 
 ## Sebelum publikasi
 Periksa ulang ejaan alamat, nomor WhatsApp, tautan Instagram, serta embed Google Maps. Jika tersedia source website lama, halaman ini dapat diintegrasikan ke dalam struktur proyek lama.
+
+
+## Pembaruan mobile dan galeri
+- Galeri portofolio kini mendukung swipe horizontal native di layar sentuh.
+- Tombol panah galeri berpindah satu foto per klik.
+- Galeri tetap bisa digeser walaupun animasi GSAP tidak tersedia.
+- Area galeri desktop mendukung drag dengan mouse.
+- Layout hero, tombol, dan galeri disesuaikan untuk layar kecil.
