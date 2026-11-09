@@ -57,14 +57,38 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="hero-image-wrap">
-          <img class="hero-image" src="assets/hero-state-theatre.webp" alt="Gedung dengan signage vertikal bercahaya merah dan putih pada malam hari" fetchpriority="high">
+        <div class="hero-image-wrap" aria-roledescription="carousel" aria-label="Referensi visual signage">
+          <div class="hero-slides">
+            <figure class="hero-slide is-active" data-slide="0" aria-hidden="false">
+              <img class="hero-image" src="assets/hero-state-theatre.webp" alt="Gedung dengan signage vertikal bercahaya merah dan putih pada malam hari" fetchpriority="high">
+              <figcaption class="hero-image-caption"><span>VISUAL IMPACT, AFTER DARK</span><span>01 / 03</span></figcaption>
+            </figure>
+            <figure class="hero-slide" data-slide="1" aria-hidden="true">
+              <img class="hero-image" src="assets/reference-building-signage.webp" alt="Gedung modern dengan signage SOFITEL bercahaya" loading="eager">
+              <figcaption class="hero-image-caption"><span>ARCHITECTURAL SIGNAGE REFERENCE</span><span>02 / 03</span></figcaption>
+            </figure>
+            <figure class="hero-slide" data-slide="2" aria-hidden="true">
+              <img class="hero-image" src="assets/reference-corporate-showroom.webp" alt="Showroom Mercedes-Benz dengan signage bercahaya" loading="eager">
+              <figcaption class="hero-image-caption"><span>ILLUMINATED SHOWROOM REFERENCE</span><span>03 / 03</span></figcaption>
+            </figure>
+          </div>
           <div class="hero-image-shade"></div>
-          <div class="hero-image-caption"><span>VISUAL IMPACT, AFTER DARK</span><span>01 / 03</span></div>
+          <div class="hero-slider-ui">
+            <div class="hero-slider-dots" role="group" aria-label="Pilih slide">
+              <button class="hero-dot is-active" type="button" data-slide-to="0" aria-label="Tampilkan slide 1" aria-pressed="true"></button>
+              <button class="hero-dot" type="button" data-slide-to="1" aria-label="Tampilkan slide 2" aria-pressed="false"></button>
+              <button class="hero-dot" type="button" data-slide-to="2" aria-label="Tampilkan slide 3" aria-pressed="false"></button>
+            </div>
+            <div class="hero-slider-controls">
+              <span class="hero-slide-counter" aria-live="polite">01 <i>/</i> 03</span>
+              <button class="hero-prev" type="button" aria-label="Slide sebelumnya">←</button>
+              <button class="hero-next" type="button" aria-label="Slide berikutnya">→</button>
+            </div>
+          </div>
         </div>
         <div class="hero-side-note"><span class="vertical-note">SIGNAGE THAT SPEAKS BEFORE YOU DO</span><span class="side-rule"></span></div>
       </div>
-      <div class="hero-foot"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>REKLAME • SIGNAGE • BRANDING</span></div>
+      <p class="hero-reference-note">VISUAL REFERENSI INDUSTRI SIGNAGE — BUKAN KLAIM PROYEK / KLIEN CENTRAL REKLAME</p>\n      <div class="hero-foot"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>REKLAME • SIGNAGE • BRANDING</span></div>
     </section>
 
     <section class="intro-band section-pad">
